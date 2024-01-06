@@ -4,7 +4,7 @@
 ![Images](images/crypto_tracker_logo.png)
 
 ## Deployed Website
-[Crypto Tracker GitHub repository](https://github.com/kwagley0/Crypto-Tracker){:target="_blank"}
+[Crypto Tracker Live Server](https://crypto-tracker-h2rw.onrender.com/)
 
 ## Overview
 
