@@ -4,11 +4,12 @@ import { useHistory } from 'react-router-dom';
 import { CryptoState } from '../CryptoContext';
 import AuthModal from './Authentication/AuthModal';
 import UserSidebar from './Authentication/UserSidebar';
+import logo from '../logo.png';
 
 const useStyles = makeStyles(() => ({
   title: {
     flex: 1,
-    color: "gold",
+    color: "rgba(221,221,221,255)",
     fontFamily: "Montserrat",
     fontWeight: "bold",
     cursor: "pointer",
@@ -34,9 +35,16 @@ const Header = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar color='transparent' position='static'>
+      <AppBar style={{ background: "rgba(33,37,41,255)" }} position="static">
         <Container>
           <Toolbar>
+            <img
+              src={logo}
+              width="40px"
+              height="40px"
+              alt="Logo"
+              style={{ marginRight: "5px" }}
+            />
             <Typography
               onClick={() => history.push("/")}
               className={classes.title}
@@ -45,24 +53,29 @@ const Header = () => {
               Crypto Tracker
             </Typography>
             <Select
-              variant='outlined'
+              variant="outlined"
               style={{
                 width: 100,
                 height: 40,
                 marginRight: 15,
+                color: "#dddddd",
               }}
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
             >
-              <MenuItem value={'USD'}>USD</MenuItem>
-              <MenuItem value={'EUR'}>EUR</MenuItem>
+              <MenuItem value={"USD"} style={{ color: "#dddddd" }}>
+                USD
+              </MenuItem>
+              <MenuItem value={"EUR"} style={{ color: "#dddddd" }}>
+                EUR
+              </MenuItem>
             </Select>
-            {user ? <UserSidebar/> : <AuthModal/>}
+            {user ? <UserSidebar /> : <AuthModal />}
           </Toolbar>
         </Container>
       </AppBar>
     </ThemeProvider>
-  )
+  );
 }
 
 export default Header

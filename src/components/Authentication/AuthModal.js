@@ -76,15 +76,15 @@ export default function AuthModal() {
 
   return (
     <div>
-      <Button 
-          variant="contained"
-          style={{
-            width: 85,
-            height: 40,
-            backgroundColor: '#EEBC1D',
-          }}
-          onClick={handleOpen}
-        >
+      <Button
+        variant="contained"
+        style={{
+          width: 85,
+          height: 40,
+          backgroundColor: "rgba(221,221,221,255)",
+        }}
+        onClick={handleOpen}
+      >
         Login
       </Button>
       <Modal
@@ -101,9 +101,9 @@ export default function AuthModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <AppBar 
-              position='static'
-              style={{backgroundColor: "transparent", color: "white"}}
+            <AppBar
+              position="static"
+              style={{ backgroundColor: "transparent", color: "white" }}
             >
               <Tabs
                 value={value}
@@ -115,16 +115,16 @@ export default function AuthModal() {
                 <Tab label="Sign Up" />
               </Tabs>
             </AppBar>
-              {value===0 && <Login handleClose={handleClose} />}
-              {value===1 && <Signup handleClose={handleClose} />}
+            {value === 0 && <Login handleClose={handleClose} />}
+            {value === 1 && <Signup handleClose={handleClose} />}
 
-              <Box className={classes.google}>
-                <span>OR</span>
-                <GoogleButton
-                  style={{ width: "100%", outline: "none" }}
-                  onClick={signInWithGoogle}
-                />
-              </Box>
+            <Box className={classes.google}>
+              <span>OR</span>
+              <GoogleButton
+                style={{ width: "100%", outline: "none" }}
+                onClick={signInWithGoogle}
+              />
+            </Box>
           </div>
         </Fade>
       </Modal>

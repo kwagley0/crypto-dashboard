@@ -9,7 +9,7 @@ const Crypto = createContext();
 
 const CryptoContext = ({ children }) => {
     const [currency, setCurrency] = useState("USD");
-    const [symbol, setSymbol] = useState("$");
+    const [symbol, setSymbol] = useState("$ ");
     const [coins, setCoins] = useState([]);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState(null);
@@ -60,7 +60,7 @@ const CryptoContext = ({ children }) => {
         else if (currency === "USD") setSymbol("$");
     }, [currency]);
 
-    return <Crypto.Provider value={{ currency, symbol, setCurrency, coins, loading, fetchCoins, alert, setAlert, user, watchlist, }}>{children}</Crypto.Provider>;
+    return <Crypto.Provider value={{ currency, symbol, setCurrency, setCoins, coins, loading, fetchCoins, alert, setAlert, user, watchlist, }}>{children}</Crypto.Provider>;
 }
 
 export default CryptoContext;    

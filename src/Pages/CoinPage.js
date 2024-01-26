@@ -10,6 +10,18 @@ import { CryptoState } from "../CryptoContext";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
+export function numberMarketCapWithCommas(x) {
+  if (x <= 999) {
+    return x.toString(); // Return the original number as a string for 3 or less digits
+  } else if (x >= 1000 && x <= 999999) {
+    return (x / 1000).toFixed(2) + " K"; // Format in thousands form
+  } else if (x >= 1000000 && x <= 999999999) {
+    return (x / 1000000).toFixed(2) + " M"; // Format in millions form
+  } else if (x >= 1000000000) {
+    return (x / 1000000000).toFixed(2) + " B"; // Format in billions form
+  }
+}
+
 const CoinPage = () => {
   const { id } = useParams();
   const [coin, setCoin] = useState();
@@ -135,13 +147,21 @@ const CoinPage = () => {
           height="200"
           style={{ marginBottom: 20 }}
         />
-        <Typography variant="h3" className={classes.heading}>
+        <Typography
+          variant="h3"
+          className={classes.heading}
+          style={{ color: "#dddddd" }}
+        >
           {coin?.name}
         </Typography>
-        <Typography variant="subtitle1" className={classes.description}>
+        <Typography
+          variant="subtitle1"
+          className={classes.description}
+          style={{ color: "#dddddd" }}
+        >
           {HTMLReactParser(coin?.description.en.split(". ")[0])}.
         </Typography>
-        <div className={classes.marketData}>
+        <div className={classes.marketData} style={{ color: "#dddddd" }}>
           <span style={{ display: "flex" }}>
             <Typography variant="h5" className={classes.heading}>
               Rank:
@@ -170,7 +190,9 @@ const CoinPage = () => {
             >
               {symbol}{" "}
               {numberWithCommas(
-                coin?.market_data.current_price[currency.toLowerCase()]
+                coin?.market_data.current_price[currency.toLowerCase()].toFixed(
+                  2
+                )
               )}
             </Typography>
           </span>
@@ -186,12 +208,9 @@ const CoinPage = () => {
               }}
             >
               {symbol}{" "}
-              {numberWithCommas(
-                coin?.market_data.market_cap[currency.toLowerCase()]
-                  .toString()
-                  .slice(0, -6)
+              {numberMarketCapWithCommas(
+                coin?.market_data.market_cap[currency.toLowerCase()].toString()
               )}
-              M
             </Typography>
           </span>
           {user && (
@@ -200,11 +219,12 @@ const CoinPage = () => {
               style={{
                 width: "100%",
                 height: 40,
-                backgroundColor: inWatchlist ? "#ff0000" : "#EEBC1D",
+                backgroundColor: inWatchlist ? "#ff0000" : "lightgreen",
+                color:"black"
               }}
               onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
             >
-            {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
+              {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
             </Button>
           )}
         </div>

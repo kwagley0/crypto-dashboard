@@ -26,33 +26,34 @@ const Banner = () => {
     const classes = useStyles();
 
     return (
-        <div className={classes.banner}>
-            <Container className={classes.bannerContent}>
-                <div className={classes.tagline}>
-                    <Typography
-                        variant="h2"
-                        style={{
-                            fontWeight: "bold",
-                            marginBottom: 15,
-                            fontFamily: "Montserrat",
-                        }}
-                    >
-                        Crypto Tracker
-                    </Typography>
-                    <Typography
-                        variant="subtitle2"
-                        style={{
-                            color: "darkgrey",
-                            textTransform: "capitalize",
-                            fontFamily: "Montserrat",
-                        }}
-                    >
-                        Get all the Info regarding your favorite Crypto Currency
-                    </Typography>
-                </div>
-                <Carousel></Carousel>
-            </Container>
-        </div>
+      <div className={classes.banner}>
+        <Container className={classes.bannerContent}>
+          <div className={classes.tagline}>
+            <Typography
+              variant="h2"
+              style={{
+                fontWeight: "bold",
+                color: "rgba(221,221,221,255)",
+                marginBottom: 15,
+                fontFamily: "Montserrat",
+              }}
+            >
+              Crypto Tracker
+            </Typography>
+            <Typography
+              variant="subtitle2"
+              style={{
+                color: "rgba(221,221,221,255)",
+                textTransform: "capitalize",
+                fontFamily: "Montserrat",
+              }}
+            >
+              Get all the Info regarding your favorite Crypto Currency
+            </Typography>
+          </div>
+          <Carousel></Carousel>
+        </Container>
+      </div>
     );
 }
 

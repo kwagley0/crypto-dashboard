@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
@@ -11,59 +11,60 @@ import { AiFillDelete } from  'react-icons/ai';
 import { doc, setDoc } from 'firebase/firestore';
 
 const useStyles = makeStyles({
-    container: {
-        width: 350,
-        padding: 25,
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        fontFamily: "monospace",
-    },
-    profile: {
-        flex: 1,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "20px",
-        height: "92%",
-    },
-    picture: {
-        width: 200,
-        height: 200,
-        cursor: "pointer",
-        backgroundColor: "#EEBC1D",
-        objectFit: "contain",
-    },
-    logout: {
-        height: "8%",
-        width: "100%",
-        backgroundColor: "#EEBC1D",
-        marginTop: 20,
-    },
-    watchlist: {
-        flex: 1,
-        width: "100%",
-        backgroundColor: "grey",
-        borderRadius: 10,
-        padding: 15,
-        paddingTop: 10,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 12,
-        overflowY: "scroll",
-    },
-    coin: {
-      padding: 10,
-      borderRadius: 5,
-      color: "black",
-      width: "100%",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      backgroundColor: "#EEBC1D",
-      boxShadow: "0 0 3px black",
-    },
+  container: {
+    width: 350,
+    padding: 25,
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    fontFamily: "monospace",
+    backgroundColor: "#303440",
+  },
+  profile: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "20px",
+    height: "92%",
+  },
+  picture: {
+    width: 200,
+    height: 200,
+    cursor: "pointer",
+    backgroundColor: "#EEBC1D",
+    objectFit: "contain",
+  },
+  logout: {
+    height: "8%",
+    width: "100%",
+    backgroundColor: "#EEBC1D",
+    marginTop: 20,
+  },
+  watchlist: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: "grey",
+    borderRadius: 10,
+    padding: 15,
+    paddingTop: 10,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 12,
+    overflowY: "scroll",
+  },
+  coin: {
+    padding: 10,
+    borderRadius: 5,
+    color: "black",
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "rgba(221,221,221,255)",
+    boxShadow: "0 0 3px black",
+  },
 });
 
 export default function UserSidebar() {
@@ -72,7 +73,12 @@ export default function UserSidebar() {
     right: false,
   });
 
-  const { user, setAlert, watchlist, coins, symbol } = CryptoState();
+  const { user, setAlert, watchlist, coins, fetchCoins, symbol} = CryptoState();
+
+   useEffect(() => {
+     fetchCoins();
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -119,19 +125,19 @@ export default function UserSidebar() {
 
   return (
     <div>
-      {['right'].map((anchor) => (
+      {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
-            <Avatar
-                onClick={toggleDrawer(anchor, true)}
-                style={{
-                    height: 38,
-                    width: 38,
-                    cursor: "pointer",
-                    backgroundColor: "#EEBC1D",
-                  }}
-                src={user.photoURL}
-                alt={user.displayName || user.email}
-            />
+          <Avatar
+            onClick={toggleDrawer(anchor, true)}
+            style={{
+              height: 38,
+              width: 38,
+              cursor: "pointer",
+              backgroundColor: "#EEBC1D",
+            }}
+            src={user.photoURL}
+            alt={user.displayName || user.email}
+          />
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}
@@ -139,13 +145,13 @@ export default function UserSidebar() {
             onOpen={toggleDrawer(anchor, true)}
           >
             <div className={classes.container}>
-                  <div className={classes.profile}>
-                    <Avatar
-                    className={classes.picture}
-                    src={user.photoURL}
-                    alt={user.displayName || user.email}
-                    />
-                  <span
+              <div className={classes.profile}>
+                <Avatar
+                  className={classes.picture}
+                  src={user.photoURL}
+                  alt={user.displayName || user.email}
+                />
+                <span
                   style={{
                     width: "100%",
                     fontSize: 25,
@@ -156,40 +162,40 @@ export default function UserSidebar() {
                 >
                   {user.displayName || user.email}
                 </span>
-                    <div className={classes.watchlist}>
-                        <span style={{ fontSize: 15, textShadow: "0 0 5px black" }}>
-                            Watchlist
-                        </span>
-                        
-                        {coins.map((coin) => {
-                          if (watchlist.includes(coin.id))
-                            return (
-                              <div className={classes.coin}>
-                                <span>{coin.name}</span>
-                                <span style={{ display: "flex", gap: 8 }}>
-                                {symbol}{" "}
-                                {numberWithCommas(coin.current_price.toFixed(2))}
-                                <AiFillDelete
-                                  style={{ cursor: "pointer" }}
-                                  fontSize="16"
-                                  onClick={() => removeFromWatchlist(coin)}
-                                />
-                              </span>
-                              </div>
-                            );
-                          else return <></>;
-                      })}
-                    </div>
-                </div>
-                <Button
-                    variant="contained"
-                    className={classes.logout}
-                    onClick={logOut}
-                >
-                    Log Out
-                </Button>
-            </div>
+                <div className={classes.watchlist}>
+                  <span style={{ fontSize: 15, textShadow: "0 0 5px black" }}>
+                    Watchlist
+                  </span>
 
+                  {coins.map((coin) => {
+                    if (watchlist.includes(coin.id))
+                      return (
+                        <div className={classes.coin}>
+                          <span>{coin.name}</span>
+                          <span style={{ display: "flex", gap: 8}}>
+                            {symbol}{" "}
+                            {numberWithCommas(coin.current_price.toFixed(2))}
+                            <AiFillDelete
+                              style={{ cursor: "pointer" }}
+                              fontSize="16"
+                              onClick={() => removeFromWatchlist(coin)}
+                            />
+                          </span>
+                        </div>
+                      );
+                    else return <></>;
+                  })}
+                </div>
+              </div>
+              <Button
+                variant="contained"
+                className={classes.logout}
+                onClick={logOut}
+                style={{ backgroundColor: "#dddddd" }}
+              >
+                Log Out
+              </Button>
+            </div>
           </SwipeableDrawer>
         </React.Fragment>
       ))}

@@ -8,12 +8,12 @@ import Alert from "./components/Alert";
 
 
 function App() {
-  const useStyles = makeStyles(() => ({  
+  const useStyles = makeStyles(() => ({
     App: {
-      backgroundColor: '#14161a',
-      color: 'white',
-      minHeight: '100vh',
-    }, 
+      backgroundColor: "rgba(48,52,64,255)",
+      color: "#white",
+      minHeight: "100vh",
+    },
   }));
 
   const classes = useStyles();
