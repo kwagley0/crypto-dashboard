@@ -1,5 +1,5 @@
 <div align="center">
-     <h1 style="font-size: 2.5em;">Crypto Dashboard</h1>
+     <h1 style="font-size: 5em;">Crypto Dashboard</h1>
 </div>
 
 ## Images
