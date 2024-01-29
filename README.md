@@ -46,7 +46,6 @@ This project is live on [Render](https://crypto-tracker-h2rw.onrender.com/).
 ### 🚀 Technologies
 - **Frontend**: React.js, HTML, CSS, JavaScript
 - **Backend**: Firebase
-- 
 
 ### 🧐 Sources
 <a href="https://www.coingecko.com/en/api">CoinGecko API</a> used to collect statistics on cryptocurrencies.
