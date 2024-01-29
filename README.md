@@ -34,8 +34,6 @@
 
 ### 💻 Project
 
-Cryptocurrency dashboard, using <a href="https://www.coingecko.com/en/api">CoinGecko API</a>. There are totally 100 coins, ordered by market cap. User can choose to convert the prices to Dollar, Euro, Pounds, Yen, Real or Yuan.
-
 ### 🚀 Deploy 
 
 This project is live on [Render](https://crypto-tracker-h2rw.onrender.com/).
@@ -80,14 +78,8 @@ This project uses the following technologies:
 ### 🧐 Sources
 
 <p>Price, volume and market cap: <a href="https://www.coingecko.com/en/api">CoinGecko</a></p>
+Cryptocurrency dashboard, using <a href="https://www.coingecko.com/en/api">CoinGecko API</a>. There are totally 100 coins, ordered by market cap. User can choose to convert the prices to Dollar, Euro, Pounds, Yen, Real or Yuan.
 
-### 📝 License
-
-This project is under MIT license.
-
-<hr/>
-
-Created by Paulo Bacelar.
 
 ## Images
 ![Images](images/crypto_tracker_logo.png)
