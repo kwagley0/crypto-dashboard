@@ -41,26 +41,6 @@ This project is live on [Render](https://crypto-tracker-h2rw.onrender.com/).
   
 </div>
 
-### ⚙ Prerequisites
-
-Before starting, you'll need to have [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/) or [Yarn](https://yarnpkg.com/).
-Also, an IDE is recommended for editing the code. I recommend [VSCode](https://code.visualstudio.com/).
-
-### 📗 Running the application
-
-```bash
-# Clone this repository
-$ git clone https://github.com/PauloBacelar/crypto-dashboard
-
-# Enter on crypto-dashboard folder
-$ cd crypto-dashboard
-
-# Install the dependencies
-$ npm install
-
-# Run the application
-$ npm start
-```
 
 ### 🚀 Technologies
 
