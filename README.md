@@ -53,10 +53,7 @@ This project uses the following technologies:
 - Firebase
 
 ### 🧐 Sources
-
-<p>Price, volume and market cap: <a href="https://www.coingecko.com/en/api">CoinGecko</a></p>
-Cryptocurrency dashboard, using <a href="https://www.coingecko.com/en/api">CoinGecko API</a>. There are totally 100 coins, ordered by market cap. User can choose to convert the prices to Dollar, Euro, Pounds, Yen, Real or Yuan.
-
+<a href="https://www.coingecko.com/en/api">CoinGecko API</a> used to collect information on cryptocurrencies.
 
 ## Images
 ![Images](images/crypto_tracker_logo.png)
