@@ -43,7 +43,7 @@ This project is live on [Render](https://crypto-tracker-h2rw.onrender.com/).
 </div>
 
 
-### 🚀 Technologies
+### 💻 Technologies
 - **Frontend**: React.js, HTML, CSS, JavaScript
 - **Backend**: Firebase
 
