@@ -6,7 +6,7 @@
     🚀 Crypto Dashboard
 </h1>
 
-<p align="center">Check current price, 24 hour percentage change, market cap and price history of the market's leading cryptocurrencies</p>
+<p align="center">Check current price, 24 hour percentage change, market cap and price history of the market's leading cryptocurrencies.</p>
 
 <p align="center">
   <a href="#-features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
