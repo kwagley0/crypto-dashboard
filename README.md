@@ -53,7 +53,7 @@ This project uses the following technologies:
 - Firebase
 
 ### 🧐 Sources
-<a href="https://www.coingecko.com/en/api">CoinGecko API</a> used to collect information on cryptocurrencies.
+<a href="https://www.coingecko.com/en/api">CoinGecko API</a> used to collect statistics on cryptocurrencies.
 
 ## Images
 ![Images](images/crypto_tracker_logo.png)
