@@ -1,4 +1,6 @@
-# Crypto Tracker
+<div align="center">
+    <h1>Crypto Dashboard</h1>
+</div>
 
 ## Images
 ![Images](images/crypto_tracker_logo.png)
