@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="#-features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-deploy">Deploy</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-deploy">Live Website</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
@@ -25,11 +25,14 @@
 - [x] Price history of the last 365 days
 - [x] Change the price history range over 24 hours, 30 days, 3 months or 1 year
 - [x] Conversion to USD and EUR
-
-
+- Cryptocurrency data tracking
+- User-friendly interface for market trend visualization
+- Secure user authentication system
+- Customized watchlist for tracking favorite cryptocurrencies
+The platform provides users with a responsive and user-friendly experience for tracking real-time cryptocurrency data and visualizing market trends.
 ### 💻 Project
 
-### 🚀 Deploy 
+### 🚀 Live Website 
 
 This project is live on [Render](https://crypto-tracker-h2rw.onrender.com/).
 
@@ -43,37 +46,12 @@ This project is live on [Render](https://crypto-tracker-h2rw.onrender.com/).
 
 
 ### 🚀 Technologies
-
-This project uses the following technologies:
-
-- HTML
-- CSS
-- JavaScript
-- React.js
-- Firebase
+- **Frontend**: React.js, HTML, CSS, JavaScript
+- **Backend**: Firebase
+- 
 
 ### 🧐 Sources
 <a href="https://www.coingecko.com/en/api">CoinGecko API</a> used to collect statistics on cryptocurrencies.
 
-## Images
-![Images](images/crypto_tracker_logo.png)
 
-## Deployed Website
-[Crypto Tracker Live Server](https://crypto-tracker-h2rw.onrender.com/)
-
-## Overview
-
-Crypto Tracker is a full-stack cryptocurrency tracking web application developed between September 2023 and November 2023. The platform provides users with a responsive and user-friendly experience for tracking real-time cryptocurrency data and visualizing market trends. The application is built using React.js for the frontend and Firebase for backend services.
-
-## Features
-
-- Real-time cryptocurrency data tracking
-- User-friendly interface for market trend visualization
-- Secure user authentication system
-- Customized watchlist for tracking favorite cryptocurrencies
-
-## Technologies Used
-
-- **Frontend**: React.js, HTML, CSS, JavaScript
-- **Backend**: Firebase
 
