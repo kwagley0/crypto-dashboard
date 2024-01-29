@@ -38,7 +38,7 @@ Cryptocurrency dashboard, using <a href="https://www.coingecko.com/en/api">CoinG
 
 ### 🚀 Deploy 
 
-This project is hosted on [Netlify](https://crypto-paulobacelar.netlify.app/).
+This project is hosted on [Render](https://crypto-tracker-h2rw.onrender.com/).
 
 ### ✅ Demo
 <div style="display: flex;">
