@@ -50,7 +50,7 @@ const Banner = () => {
                   fontFamily: "Montserrat",
                 }}
               >
-                Crypto Tracker
+                Crypto Dashboard
               </Typography>
               <Typography
                 variant="h5"
