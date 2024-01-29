@@ -35,7 +35,7 @@ This project is live on [Render](https://crypto-tracker-h2rw.onrender.com/).
 
 ### ✅ Demo
 <div style="display: flex;">
-<img src="<img width="1440" alt="Screenshot 2024-01-29 at 4 45 31 PM" src="https://github.com/kwagley0/crypto-dashboard/assets/121137026/d9e0f488-4490-4bc1-962d-05b9ba3c21a5">" width="475px"/>
+<img src="https://github.com/kwagley0/crypto-dashboard/assets/121137026/d9e0f488-4490-4bc1-962d-05b9ba3c21a5" width="475px"/>
 <img src="https://github.com/PauloBacelar/crypto-dashboard/blob/main/public/preview/desktop-2.png" width="475px" />
 </div>
 
