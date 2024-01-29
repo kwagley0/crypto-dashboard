@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     flex: 1,
     color: "rgba(221,221,221,255)",
     fontFamily: "Montserrat",
-    fontWeight: "bold",
+    fontWeight: "600",
     cursor: "pointer",
   },
 }));

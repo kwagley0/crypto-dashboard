@@ -1,9 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import { CryptoState } from '../CryptoContext';
-import { Container, LinearProgress, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider, Typography, createTheme, makeStyles } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
-import { numberWithCommas } from './Banner/Carousel';
-import { Pagination } from '@material-ui/lab';
+import React, { useEffect, useState } from "react";
+import { CryptoState } from "../CryptoContext";
+import {
+  Container,
+  LinearProgress,
+  Typography,
+  createTheme,
+  makeStyles,
+  Card,
+  CardContent,
+  CardMedia,
+  Grid,
+  TextField,
+  ThemeProvider,
+  Button,
+} from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import { numberWithCommas } from "./Banner/Carousel";
+import { Pagination } from "@material-ui/lab";
+import { FaSearch } from "react-icons/fa";
 
 export function numberMarketCapWithCommas(x) {
   if (x <= 999) {
@@ -16,170 +30,252 @@ export function numberMarketCapWithCommas(x) {
     return (x / 1000000000).toFixed(2) + " B"; // Format in billions form
   }
 }
+const StatButton = ({ label, value, color }) => {
+  const useStyles = makeStyles({
+    statButton: {
+      backgroundColor: color,
+      transition: "all 0.2s ease-in-out",
+      color: "#fff",
+      padding: "5px 0",
+      borderRadius: 10,
+      border: "none",
+      outline: "none",
+      width: "100%",
+      height: 40,
+      marginTop: 5,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    statLabel: {
+      fontSize: 12,
+      fontWeight: "bold",
+    },
+    statValue: {
+      fontSize: 14,
+    },
+  });
 
+  const classes = useStyles();
+
+  return (
+    <Button className={classes.statButton}>
+      <Typography className={classes.statLabel}>{label}</Typography>
+      <Typography
+        className={classes.statValue}
+        style={{
+          color: value.trim().endsWith("%")
+            ? (() => {
+                const numericValue = Number(value.trim().slice(0, -1));
+                value =
+                  numericValue > 0
+                    ? `\u00a0+${value.trim()}`
+                    : `\u00a0${value.trim()}`;
+                return numericValue >= 0 ? "rgb(14, 203, 129)" : "red";
+              })()
+            : "",
+        }}
+      >
+        {value}
+      </Typography>
+    </Button>
+  );
+};
 const CoinsTable = () => {
-    const [search, setSearch] = useState("");
-    const history = useHistory();
-    const [page, setPage] = useState(1);
-    const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
+  const [search, setSearch] = useState("");
+  const history = useHistory();
+  const [page, setPage] = useState(1);
+  const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
 
+  useEffect(() => {
+    fetchCoins();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currency]);
 
-        
-    useEffect(() => { 
-        fetchCoins();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currency]);
-
-    const darkTheme = createTheme({
-        palette: {
-            primary: {
-                main: "#fff",
-            },
-            type: "dark",
-        },
-    });
-
-    const handleSearch = () => {
-        return coins.filter((coin) => (
-            coin.name.toLowerCase().includes(search) || 
-            coin.symbol.toLowerCase().includes(search)
-        ));
-    };
-
-    const useStyles = makeStyles({
-      row: {
-        backgroundColor: "rgba(33,37,41,255)",
-        cursor: "pointer",
-        "&:hover": {
-          backgroundColor: "#282c30",
-        },
-        fontFamily: "Montserrat",
+  const darkTheme = createTheme({
+    palette: {
+      primary: {
+        main: "#fff",
       },
-      pagination: {
-        "& .MuiPaginationItem-root": {
-          color: "#dddddd",
-        },
-      },
-    });
+      type: "dark",
+    },
+  });
 
-    const classes = useStyles();
+  const handleSearch = () => {
+    return coins.filter(
+      (coin) =>
+        coin.name.toLowerCase().includes(search) ||
+        coin.symbol.toLowerCase().includes(search)
+    );
+  };
+
+  const useStyles = makeStyles((theme) => ({
+    card: {
+      backgroundColor: "rgba(33,37,41,255)",
+      cursor: "pointer",
+      "&:hover": {
+        backgroundColor: "#282c30",
+        transform: "scale(1.05)",
+        transition: "transform 0.3s ease-in-out",
+      },
+      borderRadius: 10,
+      boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+      overflow: "hidden",
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+    },
+    cardContent: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: "15px",
+      flex: 1,
+    },
+    cardMedia: {
+      objectFit: "contain",
+      maxHeight: 70,
+      maxWidth: "100%",
+    },
+    pagination: {
+      "& .MuiPaginationItem-root": {
+        color: "#dddddd",
+      },
+    },
+    searchInput: {
+      marginBottom: theme.spacing(2),
+      width: "15%",
+    },
+    container: {
+      paddingTop: theme.spacing(4),
+      paddingBottom: theme.spacing(4),
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center", 
+      justifyContent: "center", 
+      minHeight: "100vh", 
+    },
+  }));
+
+  const classes = useStyles();
+
+  const renderCoinCards = () => {
+    const filteredCoins = handleSearch();
+
+    return (
+      <Grid container spacing={5}>
+        {filteredCoins.slice((page - 1) * 9, (page - 1) * 9 + 9).map((row) => (
+          <Grid item xs={2} sm={6} md={4} key={row.name}>
+            <Card
+              className={classes.card}
+              onClick={() => history.push(`/coins/${row.id}`)}
+            >
+              <CardMedia
+                component="img"
+                alt={row.name}
+                height="70"
+                image={row?.image}
+                className={classes.cardMedia}
+                style={{ marginTop: "20px" }}
+              />
+              <CardContent className={classes.cardContent}>
+                <Typography
+                  variant="subtitle1"
+                  style={{
+                    textTransform: "uppercase",
+                    color: "rgba(221,221,221,255)",
+                    fontSize: 25,
+                    fontWeight: "bold",
+                    marginBottom: "-10px",
+                  }}
+                >
+                  {row.symbol}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  style={{
+                    color: "darkgrey",
+                    textAlign: "center",
+                    fontSize: 20,
+                  }}
+                >
+                  {row.name}
+                </Typography>
+                <StatButton
+                  label="Current Price: "
+                  value={`\u00a0${symbol}${numberWithCommas(
+                    row.current_price.toFixed(2)
+                  )}`}
+                  color="rgb(48, 52, 64)"
+  
+                />
+                <StatButton
+                  label="24 Hour Change:"
+                  value={`\u00a0
+                      
+                    ${row.price_change_percentage_24h.toFixed(2)}%`}
+                  color="rgb(48, 52, 64)"
+                />
+                <StatButton
+                  label="Market Cap:"
+                  value={`\u00a0${symbol}${numberMarketCapWithCommas(
+                    row.market_cap.toString()
+                  )}`}
+                  color="rgb(48, 52, 64)"
+                />
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    );
+  };
+
   return (
     <ThemeProvider theme={darkTheme}>
-      <Container style={{ textAlign: "center" }}>
-        <Typography
-          variant="h4"
+      <Container className={classes.container}>
+        <div
           style={{
-            margin: 18,
-            fontFamily: "Montserrat",
-            color: "rgba(221,221,221,255)",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            marginRight: "25px",
           }}
         >
-          Cryptocurrency Prices by Market Cap
-        </Typography>
-
-        <TextField
-          label="Search for a Crypto Currency.."
-          variant="outlined"
-          style={{ marginBottom: 20, width: "100%" }}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <TableContainer>
-          {loading ? (
-            <LinearProgress style={{ backgroundColor: "rgba(33,37,41,255)" }} />
-          ) : (
-            <Table>
-              <TableHead style={{ backgroundColor: "rgba(221,221,221,255)" }}>
-                <TableRow>
-                  {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
-                    <TableCell
-                      style={{
-                        color: "black",
-                        fontWeight: "700",
-                        fontFamily: "Montserrat",
-                      }}
-                      key={head}
-                      align={head === "Coin" ? "" : "right"}
-                    >
-                      {head}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {handleSearch()
-                  .slice((page - 1) * 10, (page - 1) * 10 + 10)
-                  .map((row) => {
-                    const profit = row.price_change_percentage_24h > 0;
-
-                    return (
-                      <TableRow
-                        onClick={() => history.push(`/coins/${row.id}`)}
-                        className={classes.row}
-                        key={row.name}
-                      >
-                        <TableCell
-                          component="th"
-                          scope="row"
-                          style={{
-                            display: "flex",
-                            gap: 15,
-                          }}
-                        >
-                          <img
-                            src={row?.image}
-                            alt={row.name}
-                            height="50"
-                            style={{ marginBottom: 10 }}
-                          />
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                            }}
-                          >
-                            <span
-                              style={{
-                                textTransform: "uppercase",
-                                color: "rgba(221,221,221,255)",
-                                fontSize: 22,
-                              }}
-                            >
-                              {row.symbol}
-                            </span>
-                            <span style={{ color: "darkgrey" }}>
-                              {row.name}
-                            </span>
-                          </div>
-                        </TableCell>
-                        <TableCell align="right" style={{ color: "#dddddd" }}>
-                          {symbol}{" "}
-                          {numberWithCommas(row.current_price.toFixed(2))}
-                        </TableCell>
-                        <TableCell
-                          align="right"
-                          style={{
-                            color: profit > 0 ? "rgb(14, 203, 129)" : "red",
-                            fontWeight: 500,
-                          }}
-                        >
-                          {profit && "+"}
-                          {row.price_change_percentage_24h.toFixed(2)}%
-                        </TableCell>
-                        <TableCell align="right" style={{ color: "#dddddd" }}>
-                          {symbol}{" "}
-                          {numberMarketCapWithCommas(row.market_cap.toString())}
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-              </TableBody>
-            </Table>
-          )}
-        </TableContainer>
+          <FaSearch
+            style={{
+              color: "rgba(221,221,221,255)",
+              fontSize: "20px",
+              marginRight: "10px",
+              marginBottom: "30px",
+            }}
+          />
+          <TextField
+            label="e.g. bitcoin"
+            variant="outlined"
+            className={classes.searchInput}
+            onChange={(e) => setSearch(e.target.value)}
+            InputLabelProps={{
+              style: {
+                color: "rgba(117,117,117,255)",
+              },
+            }}
+            style={{
+              backgroundColor: "rgba(33,37,41,255)",
+              marginBottom: "30px",
+              width: "90%",
+            }}
+          />
+        </div>
+        {loading ? (
+          <LinearProgress style={{ backgroundColor: "rgba(33,37,41,255)" }} />
+        ) : (
+          renderCoinCards()
+        )}
         <Pagination
           count={(handleSearch()?.length / 10).toFixed(0)}
           style={{
-            padding: 20,
+            marginTop: 20,
             width: "100%",
             display: "flex",
             justifyContent: "center",
@@ -193,6 +289,6 @@ const CoinsTable = () => {
       </Container>
     </ThemeProvider>
   );
-}
+};
 
-export default CoinsTable
+export default CoinsTable;

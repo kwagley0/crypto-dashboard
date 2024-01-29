@@ -52,7 +52,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
     alignItems: "center",
     gap: 12,
-    overflowY: "scroll",
+    // overflowY: "scroll",
   },
   coin: {
     padding: 10,
@@ -99,7 +99,7 @@ export default function UserSidebar() {
 
       setAlert({
         open: true,
-        message: `${coin.name} Removed from the Watchlist !`,
+        message: `${coin.name} Removed From the Watchlist!`,
         type: "success",
       });
     } catch (error) {
@@ -117,7 +117,7 @@ export default function UserSidebar() {
     setAlert({
         open: true,
         type: "success",
-        message: "Logout Successful!",
+        message: "Log Out Successful!",
       });
 
       toggleDrawer();

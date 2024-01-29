@@ -110,6 +110,8 @@ export default function AuthModal() {
                 onChange={handleChange}
                 variant="fullWidth"
                 style={{ borderRadius: 10 }}
+                indicatorColor="primary"
+                
               >
                 <Tab label="Login" />
                 <Tab label="Sign Up" />
