@@ -72,10 +72,10 @@ $ npm start
 This project uses the following technologies:
 
 - HTML
-- CSS modules
-- Javascript
+- CSS
+- JavaScript
 - React.js
-- React Bootstrap
+- Firebase
 
 ### 🧐 Sources
 
