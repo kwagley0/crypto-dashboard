@@ -3,7 +3,7 @@
 </h4>
 
 <h1 align="center">
-    🚀 Cryptocurrencies Dashboard
+    🚀 Crypto= Dashboard
 </h1>
 
 <p align="center">Check price, volume, market cap and price history of the main cryptocurrencies of the market</p>
