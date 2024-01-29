@@ -35,9 +35,10 @@ This project is live on [Render](https://crypto-tracker-h2rw.onrender.com/).
 
 ### ✅ Demo
 <div style="display: flex;">
-<img src="https://github.com/kwagley0/crypto-dashboard/assets/121137026/d9e0f488-4490-4bc1-962d-05b9ba3c21a5" width="475px"/>
 <img src="https://github.com/kwagley0/crypto-dashboard/assets/121137026/0b275b2b-dac5-489f-811d-4bb61deede99" width="475px" />
 <img src="https://github.com/kwagley0/crypto-dashboard/assets/121137026/0d54a25e-02e1-4a26-b1cf-255d6331cf31" width="475px" />  
+<img src="https://github.com/kwagley0/crypto-dashboard/assets/121137026/d9e0f488-4490-4bc1-962d-05b9ba3c21a5" width="475px"/>
+  
 </div>
 
 ### ⚙ Prerequisites
