@@ -14,9 +14,6 @@
   <a href="#-technologies">Techonologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
-<h3 align="center"> 
-🚧  Finished  🚧
-</h3>
 
 ### 📎 Features 
 
