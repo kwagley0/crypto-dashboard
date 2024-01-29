@@ -1,9 +1,9 @@
 <h4 align="center">
-  <img src="https://github.com/kwagley0/crypto-dashboard/blob/main/public/logo.png" alt="logo" height="75"/>
+  <img src="https://github.com/kwagley0/crypto-dashboard/main/public/logo.png" alt="logo" height="75"/>
 </h4>
 
 <h1 align="center">
-    🚀 Crypto= Dashboard
+    🚀 Crypto Dashboard
 </h1>
 
 <p align="center">Check price, volume, market cap and price history of the main cryptocurrencies of the market</p>
