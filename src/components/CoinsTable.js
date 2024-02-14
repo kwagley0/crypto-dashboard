@@ -151,9 +151,13 @@ const CoinsTable = () => {
       paddingBottom: theme.spacing(4),
       display: "flex",
       flexDirection: "column",
-      alignItems: "center", 
-      justifyContent: "center", 
-      minHeight: "100vh", 
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: "100vh",
+      marginTop: "-30px",
+    },
+    pages: {
+      paddingBottom: theme.spacing(2),
     },
   }));
 
@@ -207,7 +211,6 @@ const CoinsTable = () => {
                     row.current_price.toFixed(2)
                   )}`}
                   color="rgb(48, 52, 64)"
-  
                 />
                 <StatButton
                   label="24 Hour Change:"
@@ -233,60 +236,62 @@ const CoinsTable = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Container className={classes.container}>
-        <div
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginRight: "25px",
+          marginTop: "30px",
+        }}
+      >
+        <FaSearch
           style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginRight: "25px",
+            color: "rgba(221,221,221,255)",
+            fontSize: "20px",
+            marginRight: "10px",
+            marginBottom: "30px",
           }}
-        >
-          <FaSearch
-            style={{
-              color: "rgba(221,221,221,255)",
-              fontSize: "20px",
-              marginRight: "10px",
-              marginBottom: "30px",
-            }}
-          />
-          <TextField
-            label="e.g. bitcoin"
-            variant="outlined"
-            className={classes.searchInput}
-            onChange={(e) => setSearch(e.target.value)}
-            InputLabelProps={{
-              style: {
-                color: "rgba(117,117,117,255)",
-              },
-            }}
-            style={{
-              backgroundColor: "rgba(33,37,41,255)",
-              marginBottom: "30px",
-              width: "90%",
-            }}
-          />
-        </div>
+        />
+        <TextField
+          label="e.g. bitcoin"
+          variant="outlined"
+          className={classes.searchInput}
+          onChange={(e) => setSearch(e.target.value)}
+          InputLabelProps={{
+            style: {
+              color: "rgba(117,117,117,255)",
+            },
+          }}
+          style={{
+            backgroundColor: "rgba(33,37,41,255)",
+            marginBottom: "30px",
+            width: "12%",
+          }}
+        />
+      </div>
+
+      <Container className={classes.container}>
         {loading ? (
           <LinearProgress style={{ backgroundColor: "rgba(33,37,41,255)" }} />
         ) : (
           renderCoinCards()
         )}
-        <Pagination
-          count={(handleSearch()?.length / 10).toFixed(0)}
-          style={{
-            marginTop: 20,
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-          }}
-          classes={{ ul: classes.pagination }}
-          onChange={(_, value) => {
-            setPage(value);
-            window.scroll(0, 450);
-          }}
-        />
       </Container>
+      <Pagination className={classes.pages}
+        count={(handleSearch()?.length / 10).toFixed(0)}
+        style={{
+          marginTop: "-15px",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+        classes={{ ul: classes.pagination }}
+        onChange={(_, value) => {
+          setPage(value);
+          window.scroll(0, 450);
+        }}
+      />
     </ThemeProvider>
   );
 };
