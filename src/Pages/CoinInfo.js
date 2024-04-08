@@ -16,7 +16,7 @@ const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricData] = useState();
   const [days, setDays] = useState(1);
   const { currency } = CryptoState();
-  const [flag,setflag] = useState(false);
+  const [flag, setflag] = useState(false);
 
   const useStyles = makeStyles((theme) => ({
     container: {
@@ -63,7 +63,7 @@ const CoinInfo = ({ coin }) => {
   return (
     <ThemeProvider theme={darkTheme}>
       <div className={classes.container}>
-        {!historicData | flag===false ? (
+        {!historicData | (flag === false) ? (
           <CircularProgress
             style={{ color: "lightgreen" }}
             size={250}
@@ -109,10 +109,12 @@ const CoinInfo = ({ coin }) => {
               {chartDays.map((day) => (
                 <SelectButton
                   key={day.value}
-                  onClick={() => {setDays(day.value);
+                  onClick={() => {
+                    setDays(day.value);
                     setflag(false);
                   }}
                   selected={day.value === days}
+                  style={{ textAlign: "center" }}
                 >
                   {day.label}
                 </SelectButton>

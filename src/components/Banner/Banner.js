@@ -1,4 +1,10 @@
-import { Container, Typography, makeStyles, Grid } from "@material-ui/core";
+import {
+  Container,
+  Typography,
+  makeStyles,
+  Grid,
+  Hidden,
+} from "@material-ui/core";
 import React from "react";
 import Carousel from "./Carousel";
 
@@ -36,9 +42,11 @@ const Banner = () => {
             marginBottom: "100px",
           }}
         >
-          <Grid item xs={12} sm={2}>
-            <Carousel></Carousel>
-          </Grid>
+          <Hidden smDown>
+            <Grid item xs={12} sm={2} style={{ minWidth: "225px" }}>
+              <Carousel></Carousel>
+            </Grid>
+          </Hidden>
           <Grid item sm={5}>
             <div className={classes.tagline}>
               <Typography
@@ -66,9 +74,11 @@ const Banner = () => {
               </Typography>
             </div>
           </Grid>
-          <Grid item xs={12} sm={2}>
-            <Carousel></Carousel>
-          </Grid>
+          <Hidden smDown>
+            <Grid item xs={12} sm={2} style={{ minWidth: "225px" }}>
+              <Carousel></Carousel>
+            </Grid>
+          </Hidden>
         </Grid>
       </Container>
     </div>

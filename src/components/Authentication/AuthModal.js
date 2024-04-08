@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import { AppBar, Box, Button, Tab, Tabs } from '@material-ui/core';
-import Login from './Login';
-import Signup from './Signup';
-import GoogleButton from 'react-google-button';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { auth } from '../../firebase';
-import { CryptoState } from '../../CryptoContext';
+import React, { useState } from "react";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
+import { AppBar, Box, Button, Tab, Tabs } from "@material-ui/core";
+import Login from "./Login";
+import Signup from "./Signup";
+import GoogleButton from "react-google-button";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../firebase";
+import { CryptoState } from "../../CryptoContext";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   paper: {
     width: 400,
@@ -38,6 +39,9 @@ export default function AuthModal() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -57,30 +61,32 @@ export default function AuthModal() {
   const googleProvider = new GoogleAuthProvider();
 
   const signInWithGoogle = () => {
-    signInWithPopup(auth, googleProvider).then(res => {
-      setAlert({
-        open: true,
-        message: `Sign Up Successful. Welcome ${res.user.email}`,
-        type: "success",
+    signInWithPopup(auth, googleProvider)
+      .then((res) => {
+        setAlert({
+          open: true,
+          message: `Sign Up Successful. Welcome ${res.user.email}`,
+          type: "success",
+        });
+        handleClose();
+      })
+      .catch((error) => {
+        setAlert({
+          open: true,
+          message: error.message,
+          type: "error",
+        });
+        return;
       });
-    handleClose();
-    }).catch((error) => {
-      setAlert({
-        open: true,
-        message: error.message,
-        type: "error",
-      });
-      return;
-    });
-};
+  };
 
   return (
     <div>
       <Button
         variant="contained"
         style={{
-          width: 85,
-          height: 40,
+          width: isMobile ? 60 : 85,
+          height: isMobile ? 30 : 40,
           backgroundColor: "rgba(221,221,221,255)",
         }}
         onClick={handleOpen}
@@ -111,7 +117,6 @@ export default function AuthModal() {
                 variant="fullWidth"
                 style={{ borderRadius: 10 }}
                 indicatorColor="primary"
-                
               >
                 <Tab label="Login" />
                 <Tab label="Sign Up" />

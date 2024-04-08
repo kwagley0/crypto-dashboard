@@ -152,7 +152,6 @@ const CoinsTable = () => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "center",
       minHeight: "100vh",
       marginTop: "-30px",
     },
@@ -169,7 +168,7 @@ const CoinsTable = () => {
     return (
       <Grid container spacing={5}>
         {filteredCoins.slice((page - 1) * 9, (page - 1) * 9 + 9).map((row) => (
-          <Grid item xs={2} sm={6} md={4} key={row.name}>
+          <Grid item xs={12} sm={12} md={4} key={row.name}>
             <Card
               className={classes.card}
               onClick={() => history.push(`/coins/${row.id}`)}
@@ -266,7 +265,8 @@ const CoinsTable = () => {
           style={{
             backgroundColor: "rgba(33,37,41,255)",
             marginBottom: "30px",
-            width: "12%",
+            marginTop: "10px",
+            width: "175px",
           }}
         />
       </div>
@@ -278,10 +278,10 @@ const CoinsTable = () => {
           renderCoinCards()
         )}
       </Container>
-      <Pagination className={classes.pages}
+      <Pagination
+        className={classes.pages}
         count={(handleSearch()?.length / 10).toFixed(0)}
         style={{
-          marginTop: "-15px",
           width: "100%",
           display: "flex",
           justifyContent: "center",

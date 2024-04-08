@@ -1,9 +1,16 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const SelectButton = ({ children, selected, onClick }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
+
   const useStyles = makeStyles({
     selectbutton: {
       border: "1px solid lightgreen",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       borderRadius: 5,
       padding: 10,
       paddingLeft: 20,
@@ -18,7 +25,8 @@ const SelectButton = ({ children, selected, onClick }) => {
         color: "black",
       },
       width: "22%",
-      //   margin: 5,
+      textAlign: "center",
+      fontSize: isMobile ? "0.7rem" : "1rem",
     },
   });
 

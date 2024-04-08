@@ -1,10 +1,22 @@
-import { AppBar, Container, MenuItem, Select, ThemeProvider, Toolbar, Typography, createTheme, makeStyles } from '@material-ui/core';
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { CryptoState } from '../CryptoContext';
-import AuthModal from './Authentication/AuthModal';
-import UserSidebar from './Authentication/UserSidebar';
-import logo from '../logo.png';
+import {
+  AppBar,
+  Container,
+  MenuItem,
+  Select,
+  ThemeProvider,
+  Toolbar,
+  Typography,
+  createTheme,
+  makeStyles,
+} from "@material-ui/core";
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { CryptoState } from "../CryptoContext";
+import AuthModal from "./Authentication/AuthModal";
+import UserSidebar from "./Authentication/UserSidebar";
+import logo from "../logo.png";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -19,11 +31,13 @@ const useStyles = makeStyles(() => ({
 const Header = () => {
   const classes = useStyles();
   const history = useHistory();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
 
   const { currency, setCurrency, user } = CryptoState();
 
   console.log(currency);
-  
+
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -49,19 +63,23 @@ const Header = () => {
               onClick={() => history.push("/")}
               className={classes.title}
               variant="h6"
+              style={{ fontSize: isMobile ? "0.8rem" : "1.25rem" }}
             >
               Crypto Dashboard
             </Typography>
             <Select
               variant="outlined"
               style={{
-                width: 100,
-                height: 40,
+                width: isMobile ? 70 : 100,
+                height: isMobile ? 30 : 40,
                 marginRight: 15,
                 color: "#dddddd",
               }}
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
+              renderValue={(value) =>
+                isMobile ? (value === "USD" ? "$" : "€") : value
+              }
             >
               <MenuItem value={"USD"} style={{ color: "#dddddd" }}>
                 USD
@@ -76,6 +94,6 @@ const Header = () => {
       </AppBar>
     </ThemeProvider>
   );
-}
+};
 
-export default Header
+export default Header;
