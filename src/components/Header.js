@@ -57,13 +57,22 @@ const Header = () => {
               width="40px"
               height="40px"
               alt="Logo"
-              style={{ marginRight: "5px" }}
+              style={{
+                marginRight: "5px",
+                zIndex: 1,
+                position: "relative",
+                cursor: "pointer",
+              }}
+              onClick={() => history.push("/")}
             />
             <Typography
               onClick={() => history.push("/")}
               className={classes.title}
               variant="h6"
-              style={{ fontSize: isMobile ? "0.8rem" : "1.25rem" }}
+              style={{
+                fontSize: isMobile ? "0.8rem" : "1.25rem",
+                visibility: isMobile ? "hidden" : "visible",
+              }}
             >
               Crypto Dashboard
             </Typography>
